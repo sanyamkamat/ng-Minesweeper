@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+<script>
+  function createMinefield() {
+    var minefield = {};
+    minefield.rows = [];
+    for (var i = 0; i < 9; i++) {
+      var row = {};
+      row.spots = [];
+
+      for (var j = 0; j < 9; j++) {
+        var spot = {};
+        spot.isRevealed = false;
+        row.spots.push(spot);
+      }
+
+      minefield.rows.push(row);
+    }
+
+    return minefield;
+  }
+
+  function MinesweeperController($scope) {
+    $scope.minefield = createMinefield();
+  }
+</script>
+</head>
+<body ng-controller="MinesweeperController">
+<table border="1">
+  <tr ng-repeat="row in minefield.rows">
+    <td ng-repeat="spot in row.spots">
+      {{spot.isRevealed}}
+    </td>
+  </tr>
+</table>
+</body>
+</html>
